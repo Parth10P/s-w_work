@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <style>
+        .a {
+            display: flex;
+            position: relative;
+            width: 600px;
+            height: 600px;
+            background-color: yellow;
+        }
+
+        .b, .c, .x, .y {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            background-color: red;
+            width: 120px;
+            height:100px;
+            font-weight: bold;
+            border: 4px solid rgb(162, 0, 255);
+            transition: transform 0.8s ease; /* Smooth movement */
+        }
+
+        .c { background-color: rgb(15, 185, 78); border-color: rgb(134, 105, 152); }
+        .x { background-color: rgb(146, 69, 41); border-color: rgb(23, 5, 45); }
+        .y { background-color: rebeccapurple; border-color: rgb(254, 69, 1); }
+    </style>
+</head>
+<body>
+    <div class="a"> 
+        <div class="b">Box-1</div>
+        <div class="c">Box-2</div>
+        <div class="x">Box-3</div>
+        <div class="y">Box-4</div>
+    </div>
+    <script>
+        const container = document.querySelector('.a');
+        const boxes = document.querySelectorAll('.a > div');
+
+        function moveBoxRandomly(box) {
+            const containerWidth = container.clientWidth;
+            const containerHeight = container.clientHeight;
+
+            const maxX = containerWidth - box.offsetWidth;
+            const maxY = containerHeight - box.offsetHeight;
+
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+
+            box.style.transform = `translate(${randomX}px, ${randomY}px)`;
+        }
+
+        function moveBoxes() {
+            boxes.forEach(box => {
+                moveBoxRandomly(box);
+            });
+        }
+
+        setInterval(moveBoxes, 500); // Moves boxes every 1 second
+    </script>
+</body>
+</html> 
